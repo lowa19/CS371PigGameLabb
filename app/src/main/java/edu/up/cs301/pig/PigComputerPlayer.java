@@ -32,7 +32,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
        protected void receiveInfo(GameInfo info) {
         // TODO  You will implement this method
-        if(myGameState.getTurnId()==0)
+        if(myGameState.getTurnId()== this.playerNum)
         {
             return;
         }

@@ -3,6 +3,7 @@ package edu.up.cs301.pig;
 import edu.up.cs301.game.GameHumanPlayer;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
+import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.graphics.Color;
@@ -32,6 +33,8 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     private TextView    messageTextView     = null;
     private ImageButton dieImageButton      = null;
     private Button      holdButton          = null;
+    PigHoldAction hold;
+    PigRollAction roll;
 
     // the android activity that we are running
     private GameMainActivity myActivity;
@@ -60,33 +63,24 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      * 		the message
      */
     @Override
-    public void receiveInfo(GameInfo info)
-    {
+    public void receiveInfo(GameInfo info) {
+        if(info instanceof PigGameState){
         turnTotalTextView.setText(Integer.toString(myGameState.getCurRunTotal()));
-       playerScoreTextView.setText(Integer.toString(myGameState.getPlayer0Score()));
-    oppScoreTextView.setText(Integer.toString(myGameState.getPlayer1Score()));
-        if(myGameState.getCurDiceVal() == 1)
-        {
+        playerScoreTextView.setText(Integer.toString(myGameState.getPlayer0Score()));
+        oppScoreTextView.setText(Integer.toString(myGameState.getPlayer1Score()));
+        if (myGameState.getCurDiceVal() == 1) {
             dieImageButton.setImageResource(R.drawable.face1);
-        }
-        else if(myGameState.getCurDiceVal()==2)
-        {
+        } else if (myGameState.getCurDiceVal() == 2) {
             dieImageButton.setImageResource(R.drawable.face2);
-        }
-        else if(myGameState.getCurDiceVal()==3){
-         dieImageButton.setImageResource(R.drawable.face3);
-        }
-        else if(myGameState.getCurDiceVal()==4)
-        {
+        } else if (myGameState.getCurDiceVal() == 3) {
+            dieImageButton.setImageResource(R.drawable.face3);
+        } else if (myGameState.getCurDiceVal() == 4) {
             dieImageButton.setImageResource(R.drawable.face4);
-        }
-        else if(myGameState.getCurDiceVal()==5)
-        {
+        } else if (myGameState.getCurDiceVal() == 5) {
             dieImageButton.setImageResource(R.drawable.face5);
-        }
-        else if(myGameState.getCurDiceVal()==6)
-        {
+        } else if (myGameState.getCurDiceVal() == 6) {
             dieImageButton.setImageResource(R.drawable.face6);
+        }
         }
         else
         {
@@ -104,6 +98,16 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      */
     public void onClick(View button) {
         //TODO  You will implement this method to send appropriate action objects to the game
+        if(button == holdButton)
+        {
+            hold = new PigHoldAction(this);
+            game.sendAction((GameAction)hold);
+        }
+        else
+        {
+            roll = new PigRollAction(this);
+            game.sendAction((GameAction)roll);
+        }
     }// onClick
 
     /**
