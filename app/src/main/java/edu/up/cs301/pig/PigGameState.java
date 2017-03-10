@@ -45,6 +45,7 @@ public class PigGameState extends GameState{
     public int getCurRunTotal() {
         return curRunTotal;
     }
+    public int getCurDiceVal(){return curVal;}
 
     public void setTurnId(int turnId) {
         this.turnId = turnId;
