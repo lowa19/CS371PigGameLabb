@@ -82,8 +82,7 @@ public class PigLocalGame extends LocalGame {
                 return true;
             }
             else {
-                tempRoll += myGameState.getCurRunTotal();
-                myGameState.setCurRunTotal(tempRoll);
+                myGameState.setCurRunTotal(tempRoll + myGameState.getCurRunTotal());
                 return true;
             }
         }
