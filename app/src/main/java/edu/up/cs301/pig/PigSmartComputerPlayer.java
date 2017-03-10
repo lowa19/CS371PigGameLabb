@@ -39,15 +39,17 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
         }
         else{
             temp= Math.random();
-            if(temp < 0.5)
-            {
-                hold = new PigHoldAction(this);
-                game.sendAction((GameAction)hold);
-            }
-            else
+            if(((PigGameState)info).getPlayer0Score()>((PigGameState)info).getPlayer1Score() + ((PigGameState)info).getCurRunTotal() || (((PigGameState) info).getCurRunTotal()) <10)
             {
                 roll = new PigRollAction(this);
                 game.sendAction((GameAction)roll);
+
+            }
+            else
+            {
+
+                hold = new PigHoldAction(this);
+                game.sendAction((GameAction)hold);
             }
         }
 
