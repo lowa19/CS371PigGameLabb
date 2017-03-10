@@ -14,12 +14,14 @@ import android.util.Log;
  * @version February 2016
  */
 public class PigLocalGame extends LocalGame {
-
+    PigGameState myGameState;
+    int tempPlayerScore, tempRunningScore,tempRoll;
     /**
      * This ctor creates a new game state
      */
     public PigLocalGame() {
         //TODO  You will implement this constructor
+        myGameState = new PigGameState();
     }
 
     /**
@@ -39,7 +41,54 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         //TODO  You will implement this method
-        return false;
+        if(action instanceof PigHoldAction)
+        {
+            if(myGameState.getTurnId()==0)
+            {
+                tempPlayerScore = myGameState.getPlayer0Score();
+                tempRunningScore = myGameState.getCurRunTotal();
+                tempPlayerScore += tempRunningScore;
+                myGameState.setPlayer0Score(tempPlayerScore);
+                myGameState.setCurRunTotal(0);
+                myGameState.setTurnId(1);
+                return true;
+            }
+            else if(myGameState.getTurnId()==1)
+            {
+                tempPlayerScore = myGameState.getPlayer1Score();
+                tempRunningScore = myGameState.getCurRunTotal();
+                tempPlayerScore += tempRunningScore;
+                myGameState.setPlayer1Score(tempPlayerScore);
+                myGameState.setCurRunTotal(0);
+                myGameState.setTurnId(0);
+                return true;
+            }
+        }
+        else if(action instanceof PigRollAction)
+        {
+            tempRoll = (int)(Math.random()*6)+1;
+            myGameState.setCurVal(tempRoll);
+            if (tempRoll == 1)
+            {
+                myGameState.setCurRunTotal(0);
+                if(myGameState.getTurnId()==0) {
+                    myGameState.setTurnId(1);
+                }
+                else{
+                    myGameState.setTurnId(0);
+                }
+                return true;
+            }
+            else {
+                tempRoll += myGameState.getCurRunTotal();
+                myGameState.setCurRunTotal(tempRoll);
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }//makeMove
 
     /**
@@ -48,6 +97,7 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
+
     }//sendUpdatedSate
 
     /**
