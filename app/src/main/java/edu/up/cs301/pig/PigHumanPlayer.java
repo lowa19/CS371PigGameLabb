@@ -61,6 +61,14 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      */
     @Override
     public void receiveInfo(GameInfo info) {
+        if(info instanceof PigGameState)
+        {
+
+        }
+        else
+        {
+            flash(0xFFFF0000,300);
+        }
 
     }//receiveInfo
 
@@ -73,6 +81,7 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      */
     public void onClick(View button) {
         //TODO  You will implement this method to send appropriate action objects to the game
+        
     }// onClick
 
     /**

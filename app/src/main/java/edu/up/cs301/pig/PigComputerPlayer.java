@@ -30,7 +30,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
      * 		the information (presumably containing the game's state)
      */
     @Override
-    protected void receiveInfo(GameInfo info) {
+       protected void receiveInfo(GameInfo info) {
         // TODO  You will implement this method
         if(myGameState.getTurnId()==0)
         {
@@ -41,12 +41,12 @@ public class PigComputerPlayer extends GameComputerPlayer {
             if(temp < 0.5)
             {
                 hold = new PigHoldAction(this);
-                game.sendAction(hold);
+                game.sendAction((GameAction)hold);
             }
             else
             {
                 roll = new PigRollAction(this);
-                game.sendAction(roll);
+                game.sendAction((GameAction)roll);
             }
         }
 
