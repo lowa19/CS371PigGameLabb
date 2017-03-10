@@ -24,7 +24,7 @@ import android.view.View.OnClickListener;
 public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
 	/* instance variables */
-
+    PigGameState myGameState;
     // These variables will reference widgets that will be modified during play
     private TextView    playerScoreTextView = null;
     private TextView    oppScoreTextView    = null;
@@ -60,10 +60,33 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      * 		the message
      */
     @Override
-    public void receiveInfo(GameInfo info) {
-        if(info instanceof PigGameState)
+    public void receiveInfo(GameInfo info)
+    {
+        turnTotalTextView.setText(Integer.toString(myGameState.getCurRunTotal()));
+       playerScoreTextView.setText(Integer.toString(myGameState.getPlayer0Score()));
+    oppScoreTextView.setText(Integer.toString(myGameState.getPlayer1Score()));
+        if(myGameState.getCurDiceVal() == 1)
         {
-
+            dieImageButton.setImageResource(R.drawable.face1);
+        }
+        else if(myGameState.getCurDiceVal()==2)
+        {
+            dieImageButton.setImageResource(R.drawable.face2);
+        }
+        else if(myGameState.getCurDiceVal()==3){
+         dieImageButton.setImageResource(R.drawable.face3);
+        }
+        else if(myGameState.getCurDiceVal()==4)
+        {
+            dieImageButton.setImageResource(R.drawable.face4);
+        }
+        else if(myGameState.getCurDiceVal()==5)
+        {
+            dieImageButton.setImageResource(R.drawable.face5);
+        }
+        else if(myGameState.getCurDiceVal()==6)
+        {
+            dieImageButton.setImageResource(R.drawable.face6);
         }
         else
         {
@@ -81,7 +104,6 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      */
     public void onClick(View button) {
         //TODO  You will implement this method to send appropriate action objects to the game
-        
     }// onClick
 
     /**
