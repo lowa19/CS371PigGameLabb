@@ -65,26 +65,26 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     @Override
     public void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState){
-        turnTotalTextView.setText(Integer.toString(myGameState.getCurRunTotal()));
-        playerScoreTextView.setText(Integer.toString(myGameState.getPlayer0Score()));
-        oppScoreTextView.setText(Integer.toString(myGameState.getPlayer1Score()));
-        if (myGameState.getCurDiceVal() == 1) {
+        turnTotalTextView.setText(Integer.toString(((PigGameState)info).getCurRunTotal()));
+        playerScoreTextView.setText(Integer.toString(((PigGameState)info).getPlayer0Score()));
+        oppScoreTextView.setText(Integer.toString(((PigGameState)info).getPlayer1Score()));
+        if (((PigGameState)info).getCurDiceVal() == 1) {
             dieImageButton.setImageResource(R.drawable.face1);
-        } else if (myGameState.getCurDiceVal() == 2) {
+        } else if (((PigGameState)info).getCurDiceVal() == 2) {
             dieImageButton.setImageResource(R.drawable.face2);
-        } else if (myGameState.getCurDiceVal() == 3) {
+        } else if (((PigGameState)info).getCurDiceVal() == 3) {
             dieImageButton.setImageResource(R.drawable.face3);
-        } else if (myGameState.getCurDiceVal() == 4) {
+        } else if (((PigGameState)info).getCurDiceVal() == 4) {
             dieImageButton.setImageResource(R.drawable.face4);
-        } else if (myGameState.getCurDiceVal() == 5) {
+        } else if (((PigGameState)info).getCurDiceVal() == 5) {
             dieImageButton.setImageResource(R.drawable.face5);
-        } else if (myGameState.getCurDiceVal() == 6) {
+        } else if (((PigGameState)info).getCurDiceVal() == 6) {
             dieImageButton.setImageResource(R.drawable.face6);
         }
         }
         else
         {
-            flash(0xFFFF0000,300);
+            flash(0xFFFF0000,3);
         }
 
     }//receiveInfo
@@ -103,7 +103,7 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
             hold = new PigHoldAction(this);
             game.sendAction((GameAction)hold);
         }
-        else
+        if(button == dieImageButton)
         {
             roll = new PigRollAction(this);
             game.sendAction((GameAction)roll);

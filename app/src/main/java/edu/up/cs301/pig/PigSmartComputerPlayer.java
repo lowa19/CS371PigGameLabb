@@ -11,7 +11,7 @@ import edu.up.cs301.game.util.Tickable;
  * @author Andrew M. Nuxoll
  * @version August 2015
  */
-public class PigComputerPlayer extends GameComputerPlayer {
+public class PigSmartComputerPlayer extends GameComputerPlayer {
     PigGameState myGameState;
     PigHoldAction hold;
     PigRollAction roll;
@@ -19,7 +19,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
     /**
      * ctor does nothing extra
      */
-    public PigComputerPlayer(String name) {
+    public PigSmartComputerPlayer(String name) {
         super(name);
         myGameState = new PigGameState();
     }
@@ -31,7 +31,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
      * 		the information (presumably containing the game's state)
      */
     @Override
-       protected void receiveInfo(GameInfo info) {
+    protected void receiveInfo(GameInfo info) {
         // TODO  You will implement this method
         if(((PigGameState)info).getTurnId()!= playerNum)
         {
