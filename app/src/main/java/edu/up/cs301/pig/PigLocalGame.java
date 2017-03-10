@@ -20,7 +20,6 @@ public class PigLocalGame extends LocalGame {
      * This ctor creates a new game state
      */
     public PigLocalGame() {
-        //TODO  You will implement this constructor
         myGameState = new PigGameState();
     }
 
@@ -29,7 +28,10 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected boolean canMove(int playerIdx) {
-        //TODO  You will implement this method
+        if(playerIdx == myGameState.getTurnId())
+        {
+            return true;
+        }
         return false;
     }
 
@@ -97,7 +99,6 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
-
     }//sendUpdatedSate
 
     /**
@@ -109,8 +110,13 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
-        //TODO  You will implement this method
-        return null;
+        if(myGameState.getPlayer0Score() >= 50 || myGameState.getPlayer1Score()>=50)
+        {
+            return "GAME OVER";
+        }
+        else {
+            return null;
+        }
     }
 
 }// class PigLocalGame
