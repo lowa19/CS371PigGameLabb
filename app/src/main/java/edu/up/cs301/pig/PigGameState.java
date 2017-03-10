@@ -13,7 +13,7 @@ public class PigGameState extends GameState{
     int curRunTotal;
     int curVal;
 
-    private PigGameState(){
+    public PigGameState(){
         this.turnId = 0;
         this.player0Score = 0;
         this.player1Score = 0;
@@ -21,7 +21,7 @@ public class PigGameState extends GameState{
         this.curVal = 0;
     }
 
-    private PigGameState(PigGameState myState){
+    public PigGameState(PigGameState myState){
         this.turnId = myState.turnId;
         this.player0Score = myState.player0Score;
         this.player1Score = myState.player1Score;
