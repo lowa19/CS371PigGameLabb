@@ -14,7 +14,7 @@ import android.util.Log;
  * @version February 2016
  */
 public class PigLocalGame extends LocalGame {
-    PigGameState myGameState;
+    PigGameState myGameState, copy;
     int tempPlayerScore, tempRunningScore,tempRoll;
     /**
      * This ctor creates a new game state
@@ -99,6 +99,8 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
+        copy = new PigGameState(myGameState);
+        p.sendInfo(copy);
     }//sendUpdatedSate
 
     /**
