@@ -87,10 +87,7 @@ public class PigLocalGame extends LocalGame {
                 return true;
             }
         }
-        else
-        {
             return false;
-        }
     }//makeMove
 
     /**
@@ -100,7 +97,7 @@ public class PigLocalGame extends LocalGame {
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
         copy = new PigGameState(myGameState);
-        p.sendInfo(copy);
+        p.sendInfo((GameState)copy);
     }//sendUpdatedSate
 
     /**

@@ -12,7 +12,10 @@ import edu.up.cs301.game.util.Tickable;
  * @version August 2015
  */
 public class PigComputerPlayer extends GameComputerPlayer {
-
+    PigGameState myGameState;
+    PigHoldAction hold;
+    PigRollAction roll;
+    double temp;
     /**
      * ctor does nothing extra
      */
@@ -29,6 +32,24 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         // TODO  You will implement this method
+        if(myGameState.getTurnId()==0)
+        {
+            return;
+        }
+        else{
+            temp= Math.random();
+            if(temp < 0.5)
+            {
+                hold = new PigHoldAction(this);
+                game.sendAction(hold);
+            }
+            else
+            {
+                roll = new PigRollAction(this);
+                game.sendAction(roll);
+            }
+        }
+
     }//receiveInfo
 
 }
